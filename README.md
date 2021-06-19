@@ -16,7 +16,7 @@ A Complete Beginners Guide to Installing a Bitcoin Full Node on Linux
 
 A Complete Beginners Guide to Installing a Lightning Node on Linux
 
-Table Of Contents
+#Table Of Contents
 
 Introduction
 Part 0 — Just The Commands (For Quick Reference)
@@ -29,7 +29,7 @@ How To Create A Transaction Index
 How To Recompile/Update Bitcoin Core
 
 
-Introduction
+###Introduction
 Never used Linux? Don’t know what a “pruned node” means? Perfect. This one’s for you. I want you to learn Linux, and I want Bitcoin to motivate you to switch. This will be as much a “Linux for Dummies” guide as it is a guide to setting up a Bitcoin node.
 If you already know a thing or two and want to skip all the useless words:
 Just copy and paste the commands from this section.
@@ -38,7 +38,7 @@ Many tutorials just give you the steps, and while some are actually pretty good 
 
 If you run into any other issues, get confused somewhere, or think I should include something, just comment below or reach out to me on Twitter and I’ll try to assist. I still get people reaching out to me 3 years since publishing that original guide, which has partially motivated me put out this updated version.
 
-Part 0 — For Those Who Just Want The Commands
+###Part 0 — For Those Who Just Want The Commands
 You’ll notice that this section is very short, but the tutorial is pretty long. I’m putting this in the beginning to demonstrate that this is all we are really doing. This tutorial is designed for beginners to Linux, so all facets of the following steps will be explained in detail, and then some.
 
 Update The OS:
@@ -89,7 +89,7 @@ Start Bitcoin:
 bitcoin-qt &
 
 
-Part 1— Setting Up
+###Part 1— Setting Up
 (Skip this section entirely if you’re already on Linux.)
 
 Download Kubuntu ISO image
@@ -123,7 +123,7 @@ satoshi@nakamoto:/home/satoshi$
 
 Whatever directory the terminal says you are in is equivalent to being there in the graphic based file manager.
 
-Part 2— Prerequisites & Dependencies
+###Part 2— Prerequisites & Dependencies
 (Skim this section for the commands if you’re already on Linux.)
 
 Updating Linux
@@ -196,7 +196,7 @@ $ sudo apt-get install libzmq3-dev
 $ sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools
 $ sudo apt-get install libqrencode-dev
 
-Installing The Berkeley Database
+###Installing The Berkeley Database
 Next we’ll install the Berkeley Database. Eventually the Berkeley Database will no longer be necessary, but it’s still required for now. There is a script included in the Bitcoin repository we cloned earlier to install it, located in /bitcoin/contrib. To run it, navigate into the /bitcoin directory, then run the script:
 
 $ cd ~/code/bitcoin
@@ -215,7 +215,7 @@ When that completes the output should end with the following instructions, which
 That concludes the prerequisites, now onto actually installing Bitcoin.
 
 
-Part 3— Compiling Bitcoin Core 0.21.1
+###Part 3— Compiling Bitcoin Core 0.21.1
 (The version installed in this section may change with new releases.)
 After completing the Berkeley DB step, we should be in the /bitcoin directory, but just in case, let’s make sure we are there and then begin compiling & installing Bitcoin.
 
@@ -302,7 +302,7 @@ At some point, in the same terminal where you entered bitcoin-qt, now press CONT
 
 
 
-Launching Bitcoin In The Terminal
+###Launching Bitcoin In The Terminal
 The purpose of this short section is to demonstrate how to we’ll run Bitcoin when we move on to the Lightning tutorial. Bitcoin can be launched via the GUI using bitcoin-qt, or via the terminal using bitcoind.
 
 Open a new terminal and type:
@@ -421,15 +421,11 @@ A Complete Beginners Guide to Installing a Lightning Node on Linux (2021 Edition
 Running LND With a Bitcoin Core Full Node
 stopanddecrypt.medium.com
 
-
-
-
-
-
-Extra Guidance
+###Extra Guidance
 
 In the future you may want to upgrade your Bitcoin node, or you may need to resync Bitcoin Core for this tutorial because you didn’t have the transaction index (txindex=1) that LND uses for performance, or you may need to recompile Bitcoin Core because you didn’t have thelibzmq3-dev dependency required for LND. The steps below will help you for these scenarios.
-How To Create A Transaction Index
+
+#How To Create A Transaction Index
 
 If you don’t have a transaction index, you’ll need your node to create one before running LND. If you didn’t have txindex=1 in your bitcoin.conf file then you don’t have a transaction index. 
 
@@ -445,7 +441,7 @@ $ bitcoind -reindex
 If your node is not pruned: Just start bitcoind normally and let it create the txindex, now that the bitcoin.conf file has the instructions for your node:
 $ bitcoind
 
-How To Recompile/Update Bitcoin Core
+#How To Recompile/Update Bitcoin Core
 Recompiling Bitcoin Core and updating Bitcore Core are essentially the same procedure. We’re going to delete or rename the Bitcoin install directory, and then just reinstall Bitcoin all over again with the newer version.
 
 We do not need to:
