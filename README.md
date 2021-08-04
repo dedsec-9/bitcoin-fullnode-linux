@@ -234,7 +234,7 @@ Pay attention to this step.
 
 export is going to define the variable BDB_PREFIX as the full Berkeley DB install directory specified: /home/satoshi/code/bitcoin/db4
   
-### YOU ARE NOT SATOSHI!!! Insert your username!!!
+# YOU ARE NOT SATOSHI!!! Insert your username!!!
 
 If your username is John, change the next line to: /home/john/code/bitcoin/db4
 $ export BDB_PREFIX='/home/satoshi/code/bitcoin/db4'
