@@ -17,20 +17,19 @@ A Complete Beginners Guide to Installing a Bitcoin Full Node on Linux
 A Complete Beginners Guide to Installing a Lightning Node on Linux
 
 # Table Of Contents
+- Introduction
+- Part 0 — Just The Commands (For Quick Reference)
+- Part 1 — Installing Linux & Setting Up
+- Part 2 — Prerequisites & Dependencies
+- Part 3 — Compiling Bitcoin Core 0.21.1
+- Part 4 — Node Configuring & Familiarization
 
-Introduction
-Part 0 — Just The Commands (For Quick Reference)
-Part 1 — Installing Linux & Setting Up
-Part 2 — Prerequisites & Dependencies
-Part 3 — Compiling Bitcoin Core 0.21.1
-Part 4 — Node Configuring & Familiarization
-
-Extra Guidance
-How To Create A Transaction Index
-How To Recompile/Update Bitcoin Core
+- Extra Guidance
+- How To Create A Transaction Index
+- How To Recompile/Update Bitcoin Core
 
 
-### Introduction
+# Introduction
 Never used Linux? Don’t know what a “pruned node” means? Perfect. This one’s for you. I want you to learn Linux, and I want Bitcoin to motivate you to switch. This will be as much a “Linux for Dummies” guide as it is a guide to setting up a Bitcoin node.
 If you already know a thing or two and want to skip all the useless words:
 Just copy and paste the commands from this section.
