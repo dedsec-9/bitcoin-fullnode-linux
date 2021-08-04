@@ -1,12 +1,12 @@
-# A Complete Beginners Guide to Installing a Bitcoin Full Node on Linux (2021 Edition)
+# A Complete Guide to Installing a Bitcoin Full Node on Linux (2021 Edition)
 Compile Bitcoin on Kubuntu 20.4 (v0.21.1)
 StopAndDecrypt 
 
 Published on 06/18/2021 
-Editor- satoshi nakamoto 
+Editor- satoshi n.
 
 
-Primary:
+# Primary:
 Running Bitcoin & Lightning Nodes Over The Tor Network (2021 Edition)
 And Connecting Your Phone to Use Lightning On-The-Go
 stopanddecrypt.medium.com
@@ -24,6 +24,7 @@ Part 1 — Installing Linux & Setting Up
 Part 2 — Prerequisites & Dependencies
 Part 3 — Compiling Bitcoin Core 0.21.1
 Part 4 — Node Configuring & Familiarization
+
 Extra Guidance
 How To Create A Transaction Index
 How To Recompile/Update Bitcoin Core
@@ -110,6 +111,7 @@ Feel free to poke around and get familiar, but at some point navigate to the App
 Before we enter anything into the terminal let’s take a look at what we already see. At the top of the terminal window it says “Konsole”. That’s just the name of the software specific to this desktop environment. Sometimes you’ll see it referred to as the terminal, command line, shell, or whatever it may be named in another Linux operating system.
 
 satoshi is the username. nakamoto is the computer’s hostname and will show up on whatever network you may be connected to. Yours will be whatever you selected during the installation.
+
 In between the : and $ you’ll see a ~ .
 
 This is an abbreviation for your /home/<username> directory.
@@ -181,7 +183,7 @@ ls -a will output all folders, including hidden folders if any exist. Hidden fol
 The output from the terminal matches the files shown in the file manager. One is text, the other is graphical.
 
 
-Installing Libraries
+### Installing Libraries
 Now we need to install some libraries. When installing libraries you can sometimes list many in a single command and separate them with a single space. In this tutorial I’ve split them into groups similar to the build documentation on Github for Ubuntu. Combining certain ones together can produce errors.
 
 Libraries:
@@ -232,9 +234,10 @@ This video was recorded before Bitcoin Core v0.21.1 was released.
 Pay attention to this step.
 
 export is going to define the variable BDB_PREFIX as the full Berkeley DB install directory specified: /home/satoshi/code/bitcoin/db4
-You are not satoshi!!! Insert your username...
+  
+YOU ARE NOT SATOSHI!!! Insert your username!!!
 
-If your user is John, change the next line to: /home/john/code/bitcoin/db4
+If your username is John, change the next line to: /home/john/code/bitcoin/db4
 $ export BDB_PREFIX='/home/satoshi/code/bitcoin/db4'
 
 That command is the only command in this tutorial where the username (and the correct one, yours) needs to be specifically provided. As mentioned in the beginning, ~ is equivalent to /home/<your-username> , so all of the other commands we enter will just use ~ instead. That specific export command above requires the full path to be typed out, which is why we aren’t using ~/code/bitcoin/db4 instead.
@@ -246,6 +249,7 @@ $ ./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PR
 Now for actually compiling and installing. This will take the longest time out of them all. Just let it run and complete:
 $ make
 $ sudo make install
+  
 The make command will compile, and be the longer of the two. When that is complete, don’t forget to run sudo make install afterword, so the software is actually installed. (I’ve received messages where this was the case.)
 
 
@@ -256,7 +260,8 @@ Once that completes you have Bitcoin Core installed!
 
 Before we launch Bitcoin and let it sync, we need to create & configure the bitcoin.conf file. But before we configure Bitcoin, let’s start & stop the software a couple of different ways to get a feel for what we are doing.
 
-Launching The Bitcoin Core GUI And Viewing Logs
+# Launching The Bitcoin Core GUI And Viewing Logs
+  
 The first thing I want you to do is set up a few windows before we run Bitcoin for the first time. We’re going to run the GUI version first, called bitcoin-qt, then we’ll exit it and run the non-GUI version called bitcoind, and then back to bitcoin-qt, with some steps and configuration in between so you can understand what’s really happening and feel comfortable starting and stopping the software when you need to.
 
 Close all open windows, and open two brand new terminal windows and the file manager. In the file manager navigate to /home/satoshi.
@@ -276,6 +281,7 @@ $ cd ~/.bitcoin
 You should now see a folder named .bitcoin appear in the file manager as well. Navigate into that folder, and we’re now redundantly in this directory both in the terminal and file manager, but for a reason.
 
 Now we’re going to create a file called debug.log. When you first launch Bitcoin, both this hidden folder, and the debug.log file are automatically created, but you’ll see why I want to do this ahead of time in a moment:
+  
 $ touch ~/.bitcoin/debug.log
 
 touch will create the file we specify (debug.log) into the directory we specify.
@@ -285,6 +291,7 @@ Now we’re going to tail the debug.log file. Log files get updated continuously
 We can’t tail a file that doesn’t exist, which is why we created debug.log ahead of launching Bitcoin Core for the first time.
 
 When you enter the following command you’ll see nothing because Bitcoin isn’t running yet, but we’ll leave it like this for now:
+  
 $ tail -f ~/.bitcoin/debug.log
 
 In the other terminal window we opened, run Bitcoin by entering the following:
@@ -300,8 +307,6 @@ Normally when launching Bitcoin Core for the first time, it will ask you where y
 You can watch this for however long you want because it will take a long time to sync, but we still need to change some configurations and restart.
 
 At some point, in the same terminal where you entered bitcoin-qt, now press CONTROL+C. You’ll see the GUI close down, and the log file will stop. You can read the exit messages in the log, and you can scroll up and read all the different events that occurred. Now that it’s stopped, close all windows.
-
-
 
 ### Launching Bitcoin In The Terminal
 The purpose of this short section is to demonstrate how to we’ll run Bitcoin when we move on to the Lightning tutorial. Bitcoin can be launched via the GUI using bitcoin-qt, or via the terminal using bitcoind.
@@ -319,11 +324,15 @@ We need to create a configuration file now, so in the file explorer create a fil
 
 # Needed for full validation
 assumevalid=0
+  
 # Improves LND performance
+  
 # Needs to be set now if you're going to install Lightning later
 txindex=1
+  
 # Not needed, but will show us useful info later in the tutorial
 debug=net
+  
 Alternatively, this next config is exactly the same but without the comments:
 assumevalid=0
 txindex=1
@@ -335,9 +344,8 @@ By default, not all of the debug information is included in the log file. Settin
 
 All the debug config options you can set are: net, tor, mempool, http, bench, zmq, db, rpc, estimatefee, addrman, selectcoins, reindex, cmpctblock, rand, prune, proxy, mempoolrej, libevent, coindb, qt, leveldb.
 
-
-
-Disclaimer: Do not leave debug set to 1 indefinitely or your log file will grow larger than the entire blockchain and fill up your hard drive. It’s happened to me.
+# Disclaimer: 
+  Do not leave debug set to 1 indefinitely or your log file will grow larger than the entire blockchain and fill up your hard drive. It’s happened to me.
 
 txindex=1 will create a transaction index as the blockchain syncs, which will ready the node for my Lightning tutorial that follows this.
 
@@ -381,6 +389,7 @@ Again because it’s a tail, you’ll see nothing until you re-run bitcoin-qt or
 grep is a command that has a few functions, but in this context, it will take the output from the first command and filter for it so it only shows lines that include the text within the quotes. They way we’re using it here will take the output of tail -f (all of the logs) and only show lines that include the text “UpdateTip:”.
 
 UpdateTip: is specific verbiage that only appears when a new block is added.
+  
 The | is commonly called a “pipe”, and all it really means is “take the output of the first command and send it through the second command”. You’ll hear people say terms like “pipe it to grep” or “pipe it to more”, and this is what they mean.
 
 In somewhat simpler terms: tail -f will output the log as it updates, pipe will send that output to grep, and grep will filter out all the lines that don’t include “UpdateTip:”, and then show you the remaining lines (that do include UpdateTip:) in the terminal.
@@ -397,9 +406,12 @@ This is the same grep command but with the -v flag, and will do the opposite of 
 
 UpdateTip: is included first, because we’re already pulling that specific information into a different window. What you’ll see next are the two symbols \|and what these do is tell the grep command “filter out x and y and z and …”
 
-So now we’ve effectively split a single log file up into two outputs so we can more accurately watch what’s going on, and filter out some other info I’ve chosen so you have a slower scrolling output. This way you can keep direct track of the blocks coming in with the first tail command without it forcing the other information out of the way. Feel free to play around with what you want to include and exclude until you’re comfortable using the command.
+So now we’ve effectively split a single log file up into two outputs so we can more accurately watch what’s going on, and filter out some other info I’ve chosen so you have a slower scrolling output. This way you can keep direct track of the blocks coming in with the first tail command without it forcing the other information out of the way. 
+  
+Feel free to play around with what you want to include and exclude until you’re comfortable using the command.
 
 Now you should have Bitcoin syncing, and two terminals with tail commands running. One showing you the new blocks coming in, and the other showing the rest of the log output.
+
 That’s it! Just let it sync. Depending on your hardware & bandwidth it could take anywhere from a handful of hours to multiple weeks (unlikely).
 
 When it’s finally synced, blocks will start coming in once every ~10 minutes on average and the the debug.log file will start showing a lot more activity, including transaction relaying information which doesn’t begin until after the Initial Block Download (IBD) period.
@@ -417,7 +429,7 @@ $ sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-slee
 
 When you’re ready you can proceed with installing Lightning:
 
-A Complete Beginners Guide to Installing a Lightning Node on Linux (2021 Edition)
+A Complete Beginner's Guide to Installing a Lightning Node on Linux (2021 Edition)
 
 # Running LND With a Bitcoin Core Full Node
 stopanddecrypt.medium.com
@@ -462,5 +474,5 @@ If you’re running and old Bitcoin client and want to follow this tutorial, I r
 
 You can double check your client version running this command:
 $ bitcoind --version
-
-
+  
+  ...END...
