@@ -38,7 +38,7 @@ Many tutorials just give you the steps, and while some are actually pretty good 
 
 If you run into any other issues, get confused somewhere, or think I should include something, just comment below or reach out to me on Twitter and I’ll try to assist. I still get people reaching out to me 3 years since publishing that original guide, which has partially motivated me put out this updated version.
 
-### Part 0 — For Those Who Just Want The Commands
+# Part 0 — For Those Who Just Want The Commands
 You’ll notice that this section is very short, but the tutorial is pretty long. I’m putting this in the beginning to demonstrate that this is all we are really doing. This tutorial is designed for beginners to Linux, so all facets of the following steps will be explained in detail, and then some.
 
 Update The OS:
@@ -89,7 +89,7 @@ Start Bitcoin:
 bitcoin-qt &
 
 
-### Part 1— Setting Up
+# Part 1— Setting Up
 (Skip this section entirely if you’re already on Linux.)
 
 Download Kubuntu ISO image
@@ -216,7 +216,7 @@ When that completes the output should end with the following instructions, which
 That concludes the prerequisites, now onto actually installing Bitcoin.
 
 
-### Part 3— Compiling Bitcoin Core 0.21.1
+# Part 3— Compiling Bitcoin Core 0.21.1
   
 (The version installed in this section may change with new releases.)
 After completing the Berkeley DB step, we should be in the /bitcoin directory, but just in case, let’s make sure we are there and then begin compiling & installing Bitcoin.
@@ -321,15 +321,15 @@ Press CONTROL+C to stop it again. Bitcoin will shut down and you can see the log
 Creating The bitcoin.conf File
 We need to create a configuration file now, so in the file explorer create a file called bitcoin.conf . Open it, paste the following, and save the file:
 
-# Needed for full validation
+### Needed for full validation
 assumevalid=0
   
-# Improves LND performance
+### Improves LND performance
   
-# Needs to be set now if you're going to install Lightning later
+### Needs to be set now if you're going to install Lightning later
 txindex=1
   
-# Not needed, but will show us useful info later in the tutorial
+### Not needed, but will show us useful info later in the tutorial
 debug=net
   
 Alternatively, this next config is exactly the same but without the comments:
@@ -456,7 +456,7 @@ $ bitcoind
 # How To Recompile/Update Bitcoin Core
 Recompiling Bitcoin Core and updating Bitcore Core are essentially the same procedure. We’re going to delete or rename the Bitcoin install directory, and then just reinstall Bitcoin all over again with the newer version.
 
-We do not need to:
+### We do not need to:
 
 re-sync or re-validate the blockchain
 create the bitcoin.conf file again
